@@ -245,14 +245,21 @@ with gr.Blocks(title="AI Marketing Brief Agent") as demo:
         " workflow and automatic validation retry loops:"
     )
     mermaid_syntax = get_mermaid_diagram()
-    # Render interactive Mermaid.js diagram directly via HTML & CDN
-    gr.HTML(f"""
-        <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
-        <script>mermaid.initialize({{ startOnLoad: true }});</script>
+    gr.HTML(
+        f"""
         <div class="mermaid" style="background: white; padding: 20px; border-radius: 8px; text-align: center;">
             {mermaid_syntax}
         </div>
-    """)
+        """,
+        head=(
+            '<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js">'
+            "</script>"
+        ),
+        js_on_load=(
+            "mermaid.initialize({ startOnLoad: false });"
+            "mermaid.run({ nodes: element.querySelectorAll('.mermaid') });"
+        ),
+    )
 
   with gr.Row():
     with gr.Column(scale=1):
