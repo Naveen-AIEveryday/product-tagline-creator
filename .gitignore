@@ -1,0 +1,7 @@
+.env
+session_logs.json
+__pycache__/
+.venv/
+venv/
+*.py[cod]
+*_brief.md
